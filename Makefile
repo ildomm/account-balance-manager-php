@@ -19,3 +19,7 @@ install-tools:
 	brew install shivammathur/php/php@8.1
 	brew services start shivammathur/php/php@8.1
 	brew install symfony-cli/tap/symfony-cli
+
+.PHONY: tests
+tests:
+	symfony php ./vendor/bin/phpunit

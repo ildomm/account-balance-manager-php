@@ -1,5 +1,9 @@
 # Change Log
 
+## v0.0.3
+
+- Implement database concrete methods
+
 ## v0.0.2
 
 - Configure Makefile

@@ -16,28 +16,17 @@ class GameResultRepository extends ServiceEntityRepository
         parent::__construct($registry, GameResult::class);
     }
 
-//    /**
-//     * @return GameResult[] Returns an array of GameResult objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('g')
-//            ->andWhere('g.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('g.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    /**
+     * Checks if a transaction ID exists in the database.
+     */
+    public function doesTransactionIdExist(string $transactionId): bool
+    {
+        $qb = $this->createQueryBuilder('gr')
+            ->select('count(gr.id)')
+            ->where('gr.transactionId = :transactionId')
+            ->setParameter('transactionId', $transactionId)
+            ->getQuery();
 
-//    public function findOneBySomeField($value): ?GameResult
-//    {
-//        return $this->createQueryBuilder('g')
-//            ->andWhere('g.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+        return (int) $qb->getSingleScalarResult() > 0;
+    }
 }
