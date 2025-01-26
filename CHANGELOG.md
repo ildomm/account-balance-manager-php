@@ -8,7 +8,6 @@
     - Create SQL migrations
     - Define domain structs
 
-
 ## v0.0.1
 
 - Repository setup
